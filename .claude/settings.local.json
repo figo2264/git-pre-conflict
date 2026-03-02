@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git merge-tree:*)",
+      "WebSearch",
+      "Bash(cargo build:*)",
+      "Bash(rustup update:*)",
+      "Bash(/bin/rm:*)",
+      "Bash(cargo check:*)",
+      "WebFetch(domain:docs.rs)",
+      "WebFetch(domain:v2.tauri.app)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

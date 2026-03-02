@@ -1,0 +1,13 @@
+[package]
+name = "git-pre-conflict-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "git-pre-conflict"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+colored = "2"
+git-pre-conflict-core = { path = "../crates/core" }

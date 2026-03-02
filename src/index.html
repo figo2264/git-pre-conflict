@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>git-pre-conflict</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>git-pre-conflict</h1>
+      <p class="branch" id="current-branch">loading...</p>
+    </header>
+
+    <section class="repo-section">
+      <div class="input-row">
+        <label>Repository</label>
+        <span class="repo-path-display" id="repo-path">Current directory</span>
+        <button id="browse-btn" class="btn-secondary">Browse</button>
+      </div>
+    </section>
+
+    <section class="check-section">
+      <div class="input-row">
+        <label for="target">Target branch</label>
+        <select id="target">
+          <option value="">Loading...</option>
+        </select>
+        <button id="refresh-branches-btn" class="btn-secondary" title="Refresh branch list">&#x21bb;</button>
+        <button id="check-btn">Check Now</button>
+      </div>
+    </section>
+
+    <section class="results" id="results">
+      <p class="placeholder">Run a check to see results</p>
+    </section>
+
+    <section class="watch-section">
+      <div class="input-row">
+        <label for="interval">Interval (sec)</label>
+        <input type="number" id="interval" value="300" min="10" step="10" />
+        <button id="watch-btn">Start Watching</button>
+      </div>
+    </section>
+
+    <footer id="status-bar">
+      <span id="watch-status">Not watching</span>
+      <span id="last-check"></span>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

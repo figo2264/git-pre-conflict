@@ -1,0 +1,3 @@
+# Linker config - uncomment if system `cc` is not available
+# [target.aarch64-apple-darwin]
+# linker = "/opt/homebrew/opt/llvm/bin/clang-21"
