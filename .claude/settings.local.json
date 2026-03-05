@@ -9,7 +9,10 @@
       "Bash(cargo check:*)",
       "WebFetch(domain:docs.rs)",
       "WebFetch(domain:v2.tauri.app)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git version:*)",
+      "Bash(git diff:*)",
+      "Bash(git merge-base:*)"
     ]
   }
 }
