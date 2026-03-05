@@ -9,11 +9,12 @@ body {
   background: #1a1a2e;
   color: #e0e0e0;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .container {
-  max-width: 560px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 24px 20px;
   display: flex;
@@ -218,6 +219,8 @@ button {
 footer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
   font-size: 0.75rem;
   color: #555577;
   padding-top: 8px;
@@ -318,7 +321,8 @@ footer {
   font-size: 0.75rem;
   padding: 10px;
   white-space: pre-wrap;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  overflow-x: auto;
   color: #b0b0cc;
   max-height: 300px;
   overflow-y: auto;
@@ -359,6 +363,7 @@ footer {
   gap: 8px;
   padding: 4px 0;
   font-size: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .step-num {
@@ -371,7 +376,6 @@ footer {
 
 .step-desc {
   color: #b0b0cc;
-  flex-shrink: 0;
 }
 
 .step-cmd {
@@ -383,7 +387,8 @@ footer {
   border-radius: 3px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .step-cmd:hover {
@@ -394,4 +399,20 @@ footer {
 .step-cmd.copied {
   background: #1a3a2a;
   color: #4ec968;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 480px) {
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-row label {
+    min-width: auto;
+  }
+
+  .container {
+    padding: 16px 12px;
+  }
 }
