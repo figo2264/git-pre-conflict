@@ -12,7 +12,8 @@
       "WebFetch(domain:github.com)",
       "Bash(git version:*)",
       "Bash(git diff:*)",
-      "Bash(git merge-base:*)"
+      "Bash(git merge-base:*)",
+      "Bash(grep:*)"
     ]
   }
 }
