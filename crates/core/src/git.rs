@@ -125,6 +125,34 @@ pub fn merge_tree(
     }
 }
 
+/// Find the merge base (common ancestor) between two refs.
+pub fn merge_base(repo_path: Option<&str>, ours: &str, theirs: &str) -> Result<String, AppError> {
+    let (out, _) = run_git(repo_path, &["merge-base", ours, theirs], false)?;
+    let hash = out.trim().to_string();
+    if hash.is_empty() {
+        return Err(AppError::GitCommand(
+            "merge-base returned empty result".into(),
+        ));
+    }
+    Ok(hash)
+}
+
+/// Get a unified diff for a single file between two refs.
+/// Returns empty string if there are no differences.
+pub fn diff_file(
+    repo_path: Option<&str>,
+    base_ref: &str,
+    target_ref: &str,
+    file_path: &str,
+) -> Result<String, AppError> {
+    let (out, _) = run_git(
+        repo_path,
+        &["diff", base_ref, target_ref, "--", file_path],
+        true, // git diff exits 1 when differences exist
+    )?;
+    Ok(out)
+}
+
 /// List all branches (local + remote), filtering out `origin/HEAD`.
 pub fn list_branches(repo_path: Option<&str>) -> Result<Vec<String>, AppError> {
     let (out, _) = run_git(

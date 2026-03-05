@@ -5,7 +5,7 @@ use tauri::State;
 use tauri_plugin_dialog::DialogExt;
 use tokio::sync::watch;
 
-use git_pre_conflict_core::{conflict, git, AppError, ConflictReport};
+use git_pre_conflict_core::{conflict, git, guide, AppError, ConflictReport};
 
 /// State for the background watch task.
 struct WatchState {
@@ -43,7 +43,11 @@ pub struct WatchStatus {
 }
 
 /// Run a single conflict check.
-fn do_check(repo_path: Option<&str>, target: &str, no_fetch: bool) -> Result<ConflictReport, AppError> {
+fn do_check(
+    repo_path: Option<&str>,
+    target: &str,
+    no_fetch: bool,
+) -> Result<ConflictReport, AppError> {
     git::find_git_dir(repo_path)?;
 
     let current = git::current_branch(repo_path)?;
@@ -143,7 +147,9 @@ async fn start_watch(
                             report.target_ref,
                             report.current_branch,
                         );
-                        let _ = _app.notification().builder()
+                        let _ = _app
+                            .notification()
+                            .builder()
                             .title("git-pre-conflict")
                             .body(body)
                             .show();
@@ -198,6 +204,27 @@ fn get_watch_status(state: State<'_, Arc<Mutex<WatchState>>>) -> Result<WatchSta
     })
 }
 
+#[tauri::command]
+fn get_conflict_diff(
+    repo_path: Option<String>,
+    current_branch: String,
+    target_ref: String,
+    file_path: String,
+) -> Result<String, String> {
+    let rp = repo_path.as_deref();
+    let base = git::merge_base(rp, &current_branch, &target_ref).map_err(|e| e.to_string())?;
+    git::diff_file(rp, &base, &target_ref, &file_path).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+fn get_resolution_guide(report: ConflictReport) -> Result<guide::ResolutionGuide, String> {
+    Ok(guide::generate_resolution_guide(
+        &report.current_branch,
+        &report.target_ref,
+        &report.conflicted_files,
+    ))
+}
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_notification::init())
@@ -211,6 +238,8 @@ pub fn run() {
             start_watch,
             stop_watch,
             get_watch_status,
+            get_conflict_diff,
+            get_resolution_guide,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -235,3 +235,163 @@ footer {
   opacity: 0.6;
   pointer-events: none;
 }
+
+/* Conflict row */
+.conflict-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+.conflict-row:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.conflict-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-content {
+  background: #3a2a1a;
+  color: #e8a848;
+}
+
+.badge-delete {
+  background: #3a1a1a;
+  color: #e85858;
+}
+
+.badge-rename {
+  background: #1a2a3a;
+  color: #58a8e8;
+}
+
+.badge-other {
+  background: #2a2a2a;
+  color: #999;
+}
+
+.conflict-path {
+  flex: 1;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.82rem;
+  color: #e8a848;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.btn-diff {
+  background: none;
+  border: 1px solid #333355;
+  color: #8888aa;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-diff:hover {
+  background: #2a2a4a;
+  color: #e0e0e0;
+}
+
+/* Diff panel */
+.diff-panel {
+  margin: 0 8px 8px 8px;
+  border-radius: 4px;
+  background: #0d0d1a;
+  border: 1px solid #222244;
+}
+
+.diff-content {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  padding: 10px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #b0b0cc;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.diff-add {
+  color: #4ec968;
+}
+
+.diff-del {
+  color: #e85858;
+}
+
+.diff-hunk {
+  color: #a078d0;
+}
+
+/* Resolution guide */
+.guide-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-top: 12px;
+  border-top: 1px solid #222244;
+}
+
+.guide-summary {
+  font-size: 0.78rem;
+  color: #8888aa;
+  margin-bottom: 10px;
+}
+
+.guide-step {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 0.8rem;
+}
+
+.step-num {
+  color: #6c63ff;
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 16px;
+  text-align: right;
+}
+
+.step-desc {
+  color: #b0b0cc;
+  flex-shrink: 0;
+}
+
+.step-cmd {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  color: #58c8e8;
+  background: #0d0d1a;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.step-cmd:hover {
+  background: #1a2a3a;
+  color: #8eeaff;
+}
+
+.step-cmd.copied {
+  background: #1a3a2a;
+  color: #4ec968;
+}
